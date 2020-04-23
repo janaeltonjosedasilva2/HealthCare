@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Health Care</string>
+    <string name="telefone">Telefone</string>
+    <string name="nome">Nome</string>
+    <string name="email">E-mail</string>
+    <string name="salvar_agendamento">Salvar o agendamento</string>
+    <string name="remover">Remover</string>
+</resources>

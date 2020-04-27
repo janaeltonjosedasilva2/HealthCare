@@ -10,8 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.saojudas.mobile.healthcare.R;
-import br.saojudas.mobile.healthcare.dao.AgendamentoDAO;
+import br.saojudas.mobile.healthcare.database.HaelthCareDatabase;
+import br.saojudas.mobile.healthcare.database.dao.RoomAgendamentoDAO;
 import br.saojudas.mobile.healthcare.model.Agendamento;
+import br.saojudas.mobile.healthcare.ui.adapter.FormularioAgendamentoAdapter;
 
 import static br.saojudas.mobile.healthcare.ui.activity.ConstantesActivities.CHAVE_AGENDAMENTO;
 
@@ -19,16 +21,24 @@ public class FormularioAgendamentoActivity extends AppCompatActivity {
 
     private static final String TITULO_APPBAR_NOVO_AGENDAMENTO = "Novo agendamento";
     private static final String TITULO_APPBAR_EDITA_AGENDAMENTO = "Editar agendamento";
-    private EditText campoNome;
-    private EditText campoTelefone;
-    private EditText campoEmail;
-    private final AgendamentoDAO dao = new AgendamentoDAO();
+    private EditText campoNomeMedicamento;
+    private EditText campoDose;
+    private EditText campoNomeMedico;
+    private EditText campoFrequenciaMedicamento;
+    private EditText campoHoraPrimeiraDose;
+
+    private RoomAgendamentoDAO dao;
     private Agendamento agendamento;
+    private FormularioAgendamentoAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_agendamento);
+        HaelthCareDatabase database = HaelthCareDatabase.getInstance(this);
+        dao = database.getRoomAgendamentoDAO();
+        adapter = new FormularioAgendamentoAdapter(this);
+        adapter.criaSppiner(this);
         inicializacaoDosCampos();
         carregaAgendamento();
     }
@@ -55,9 +65,11 @@ public class FormularioAgendamentoActivity extends AppCompatActivity {
     }
 
     private void preencheCamposDeAgendamento() {
-        campoNome.setText(agendamento.getNome());
-        campoEmail.setText(agendamento.getEmail());
-        campoTelefone.setText(agendamento.getTelefone());
+        campoNomeMedicamento.setText(agendamento.getNomeMedicamento());
+        campoNomeMedico.setText(agendamento.getNomeMedico());
+        campoDose.setText(agendamento.getDoseMedicamento());
+//        campoFrequenciaMedicamento.setText(agendamento.getFrequenciaMedicamento());
+//        campoHoraPrimeiraDose.setText(agendamento.getHoraPrimeiraDoseString());
     }
 
     @Override
@@ -77,18 +89,24 @@ public class FormularioAgendamentoActivity extends AppCompatActivity {
     }
 
     private void inicializacaoDosCampos() {
-        campoNome = findViewById(R.id.activity_formulario_agendamento_EditText_nomeRemedio);
-        campoTelefone = findViewById(R.id.activity_formulario_agendamento_EditText_telefone);
-        campoEmail = findViewById(R.id.activity_formulario_agendamento_EditText_email);
+        campoNomeMedicamento = findViewById(R.id.activity_formulario_agendamento_EditText_nomeRemedio);
+        campoDose = findViewById(R.id.activity_formulario_agendamento_EditText_dose);
+        campoNomeMedico = findViewById(R.id.activity_formulario_agendamento_EditText_nomeMedico);
+//        campoFrequenciaMedicamento.findViewById(R.id.activity_formulario_agendamento_spinner_frequencia_remedio);
+//        campoHoraPrimeiraDose.findViewById(R.id.activity_formulario_agendamento_EditText_dose);
     }
 
     private void preencheAgendamento() {
-        String nome = campoNome.getText().toString();
-        String email = campoEmail.getText().toString();
-        String telefone = campoTelefone.getText().toString();
+        String nomeMedicamento = campoNomeMedicamento.getText().toString();
+        String nomeMedico = campoNomeMedico.getText().toString();
+        String dose = campoDose.getText().toString();
+//        String frequenciaMedicamento = campoFrequenciaMedicamento.getText().toString();
+//        String primeiraDose = campoHoraPrimeiraDose.getText().toString();
 
-        agendamento.setNome(nome);
-        agendamento.setEmail(email);
-        agendamento.setTelefone(telefone);
+        agendamento.setNomeMedicamento(nomeMedicamento);
+        agendamento.setNomeMedico(nomeMedico);
+        agendamento.setDoseMedicamento(dose);
+//        agendamento.setFrequenciaMedicamento(frequenciaMedicamento);
+//        agendamento.setHoraPrimeiraDose(primeiraDose);
     }
 }

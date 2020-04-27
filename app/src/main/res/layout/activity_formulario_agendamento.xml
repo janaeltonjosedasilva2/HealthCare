@@ -13,27 +13,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="@string/nome"
+            android:hint="@string/nomeRemedio"
             android:inputType="textCapWords"
             android:importantForAutofill="no" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="@string/vezes_ao_dia"
+            android:layout_marginLeft="13dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="18dp"/>
+
+        <Spinner
+            android:id="@+id/activity_formulario_agendamento_spinner_frequencia_remedio"
+            android:layout_width="match_parent"
+            android:hint="@string/nomeRemedio"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"/>
+
         <EditText
-            android:id="@+id/activity_formulario_agendamento_EditText_telefone"
+            android:id="@+id/activity_formulario_agendamento_EditText_dose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="@string/telefone"
-            android:inputType="phone"
+            android:hint="@string/dose"
+            android:inputType="numberDecimal"
             android:importantForAutofill="no" />
 
         <EditText
-            android:id="@+id/activity_formulario_agendamento_EditText_email"
+            android:id="@+id/activity_formulario_agendamento_EditText_nomeMedico"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
+            android:hint="@string/nomeMedico"
             android:importantForAutofill="no" />
+
+        <EditText
+            android:id="@+id/activity_formulario_agendamento_EditText_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hor_rio_da_primeira_dose"
+            android:layout_margin="8dp"
+            android:ems="10"
+            android:inputType="time" />
 
     </LinearLayout>
 </ScrollView>

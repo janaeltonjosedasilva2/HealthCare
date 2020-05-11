@@ -9,19 +9,21 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
-import br.saojudas.mobile.healthcare.dao.AgendamentoDAO;
+import br.saojudas.mobile.healthcare.database.HaelthCareDatabase;
+import br.saojudas.mobile.healthcare.database.dao.RoomAgendamentoDAO;
 import br.saojudas.mobile.healthcare.model.Agendamento;
 import br.saojudas.mobile.healthcare.ui.adapter.ListaAgendamentoAdapter;
 
 public class ListaAgendamentoView {
     private final ListaAgendamentoAdapter adapter;
-    private final AgendamentoDAO dao;
+    private final RoomAgendamentoDAO dao;
     private final Context context;
 
     public ListaAgendamentoView(Context context) {
         this.context = context;
         this.adapter = new ListaAgendamentoAdapter(this.context);
-        this.dao = new AgendamentoDAO();
+        this.dao = HaelthCareDatabase.getInstance(context)
+                .getRoomAgendamentoDAO();
     }
 
     public void confirmaRemocao(@NonNull final MenuItem item) {
@@ -40,7 +42,7 @@ public class ListaAgendamentoView {
                 .show();
     }
 
-    public void atualizaListeDeAgendamentos() {
+    public void atualizaListaDeAgendamentos() {
         adapter.atualiza(dao.todos());
     }
 

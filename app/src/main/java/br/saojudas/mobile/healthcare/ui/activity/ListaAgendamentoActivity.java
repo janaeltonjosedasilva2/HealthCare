@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,24 +16,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import br.saojudas.mobile.healthcare.R;
-import br.saojudas.mobile.healthcare.dao.AgendamentoDAO;
 import br.saojudas.mobile.healthcare.model.Agendamento;
 import br.saojudas.mobile.healthcare.ui.ListaAgendamentoView;
-import br.saojudas.mobile.healthcare.ui.adapter.ListaAgendamentoAdapter;
 
 import static br.saojudas.mobile.healthcare.ui.activity.ConstantesActivities.CHAVE_AGENDAMENTO;
 
 public class ListaAgendamentoActivity extends AppCompatActivity {
 
     private static final String TITULO_APPBAR = "Lista de Agendamentos";
-    private final AgendamentoDAO dao = new AgendamentoDAO();
-    private ListaAgendamentoAdapter adapter;
-    private final ListaAgendamentoView listaAgendamentoView = new ListaAgendamentoView(this);
+    private ListaAgendamentoView listaAgendamentoView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_agendamento);
+        listaAgendamentoView = new ListaAgendamentoView(this);
         setTitle(TITULO_APPBAR);
         configuraFabCriaAgendamento();
         criaListaAgendamentos();
@@ -72,7 +70,7 @@ public class ListaAgendamentoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        listaAgendamentoView.atualizaListeDeAgendamentos();
+        listaAgendamentoView.atualizaListaDeAgendamentos();
     }
 
     private void criaListaAgendamentos() {

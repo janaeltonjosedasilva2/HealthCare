@@ -46,12 +46,13 @@ public class ListaAgendamentoAdapter extends BaseAdapter {
         return viewCriada;
     }
 
+    //Altera layout de listagem
     private void vincula(View viewCriada, Agendamento agendamentoDevolvido) {
         TextView nome = viewCriada.findViewById(R.id.item_remedio_nome);
-        nome.setText(agendamentoDevolvido.getNome());
+        nome.setText(agendamentoDevolvido.getNomeMedicamento());
 
         TextView telefone = viewCriada.findViewById(R.id.item_telefone);
-        telefone.setText(agendamentoDevolvido.getTelefone());
+        telefone.setText(agendamentoDevolvido.getDoseMedicamento());
     }
 
     private View criaView(ViewGroup parent) {

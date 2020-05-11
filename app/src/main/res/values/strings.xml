@@ -1,8 +1,20 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="app_name">Health Care</string>
-    <string name="telefone">Telefone</string>
-    <string name="nome">Nome</string>
-    <string name="email">E-mail</string>
+    <string name="dose">Dose do remédio</string>
+    <string name="nomeRemedio">Nome do Medicamento</string>
+    <string name="nomeMedico">Nome do médico</string>
     <string name="salvar_agendamento">Salvar o agendamento</string>
     <string name="remover">Remover</string>
+    <string name="vezes_ao_dia">Vezes ao dia</string>
+    <string name="hor_rio_da_primeira_dose">Horário da primeira dose</string>
+    <string-array android:name="horarios" name="frequencia_remedio">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
 </resources>

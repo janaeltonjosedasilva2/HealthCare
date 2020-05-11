@@ -24,7 +24,8 @@
             android:layout_marginLeft="13dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:layout_marginStart="13dp" />
 
         <Spinner
             android:id="@+id/activity_formulario_agendamento_spinner_frequencia_remedio"
@@ -51,7 +52,7 @@
             android:importantForAutofill="no" />
 
         <EditText
-            android:id="@+id/activity_formulario_agendamento_EditText_time"
+            android:id="@+id/activity_formulario_agendamento_EditText_horaDose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hor_rio_da_primeira_dose"

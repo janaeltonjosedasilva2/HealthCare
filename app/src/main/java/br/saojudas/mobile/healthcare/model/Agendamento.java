@@ -21,7 +21,7 @@ public class Agendamento implements Serializable {
     private String doseMedicamento;
     private String nomeMedico;
     private int frequenciaMedicamento;
-    public Calendar horaPrimeiraDose;
+    public String horaPrimeiraDose;
 
     public Agendamento() {
     }
@@ -34,29 +34,29 @@ public class Agendamento implements Serializable {
         this.frequenciaMedicamento = frequenciaMedicamento;
     }
 
-    public Calendar getHoraPrimeiraDose() {
+    public String getHoraPrimeiraDose() {
         return horaPrimeiraDose;
     }
 
-    public void setHoraPrimeiraDose(Calendar horaPrimeiraDose) {
+    public void setHoraPrimeiraDose(String horaPrimeiraDose) {
         this.horaPrimeiraDose = horaPrimeiraDose;
     }
 
-    public void setHoraPrimeiraDoseString(String horaPrimeiraDose){
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        try {
-            cal.setTime(sdf.parse(horaPrimeiraDose));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String getHoraPrimeiraDoseString() {
-        SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");
-        return formatador.format(horaPrimeiraDose.getTime());
-    }
-
+//    public void setHoraPrimeiraDoseString(String horaPrimeiraDose){
+//        Calendar cal = Calendar.getInstance();
+//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+//        try {
+//            cal.setTime(sdf.parse(horaPrimeiraDose));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public String getHoraPrimeiraDoseString() {
+//        SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");
+//        return formatador.format(horaPrimeiraDose.getTime());
+//    }
+//
 //    public Date getHoraPrimeiraDose() {
 //        return horaPrimeiraDose;
 //    }

@@ -1,14 +1,20 @@
 package br.saojudas.mobile.healthcare.ui.activity;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Calendar;
 
 import br.saojudas.mobile.healthcare.R;
 import br.saojudas.mobile.healthcare.database.HaelthCareDatabase;
@@ -27,7 +33,7 @@ public class FormularioAgendamentoActivity extends AppCompatActivity{
     private EditText campoNomeMedico;
     private Spinner campoFrequenciaMedicamento;
     private EditText campoHoraDose;
-
+    private TimePickerDialog picker;
     private RoomAgendamentoDAO dao;
     private Agendamento agendamento;
     private FormularioAgendamentoAdapter adapter;
@@ -42,6 +48,28 @@ public class FormularioAgendamentoActivity extends AppCompatActivity{
         adapter.criaSpinner(this);
         inicializacaoDosCampos();
         carregaAgendamento();
+        displayTimePicker();
+    }
+
+    private void displayTimePicker() {
+        campoHoraDose.setInputType(InputType.TYPE_NULL);
+        campoHoraDose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                int minutes = cldr.get(Calendar.MINUTE);
+                // time picker dialog
+                picker = new TimePickerDialog(FormularioAgendamentoActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                                campoHoraDose.setText(sHour + ":" + sMinute);
+                            }
+                        }, hour, minutes, true);
+                picker.show();
+            }
+        });
     }
 
     @Override
@@ -56,11 +84,11 @@ public class FormularioAgendamentoActivity extends AppCompatActivity{
     private void carregaAgendamento() {
         Intent dados = getIntent();
         if (dados.hasExtra(CHAVE_AGENDAMENTO)) {
-        setTitle(TITULO_APPBAR_EDITA_AGENDAMENTO);
+            setTitle(TITULO_APPBAR_EDITA_AGENDAMENTO);
             agendamento = (Agendamento) dados.getSerializableExtra(CHAVE_AGENDAMENTO);
             preencheCamposDeAgendamento();
         } else {
-        setTitle(TITULO_APPBAR_NOVO_AGENDAMENTO);
+            setTitle(TITULO_APPBAR_NOVO_AGENDAMENTO);
             agendamento = new Agendamento();
         }
     }
@@ -70,7 +98,7 @@ public class FormularioAgendamentoActivity extends AppCompatActivity{
         campoNomeMedico.setText(agendamento.getNomeMedico());
         campoDose.setText(agendamento.getDoseMedicamento());
         adapter.setPosition(this, agendamento.getFrequenciaMedicamento());
-        campoHoraDose.setText(agendamento.getHoraPrimeiraDoseString());
+        campoHoraDose.setText(agendamento.getHoraPrimeiraDose());
     }
 
     @Override
@@ -108,6 +136,6 @@ public class FormularioAgendamentoActivity extends AppCompatActivity{
         agendamento.setNomeMedico(nomeMedico);
         agendamento.setDoseMedicamento(dose);
         agendamento.setFrequenciaMedicamento(frequenciaMedicamento);
-        agendamento.setHoraPrimeiraDoseString(primeiraDose);
+        agendamento.setHoraPrimeiraDose(primeiraDose);
     }
 }

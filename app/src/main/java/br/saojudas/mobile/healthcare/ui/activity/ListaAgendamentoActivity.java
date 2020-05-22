@@ -1,5 +1,6 @@
 package br.saojudas.mobile.healthcare.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class ListaAgendamentoActivity extends AppCompatActivity {
         listaAgendamentoView = new ListaAgendamentoView(this);
         setTitle(TITULO_APPBAR);
         configuraFabCriaAgendamento();
+        configuraFabCriaUsuario();
         criaListaAgendamentos();
     }
 
@@ -59,6 +61,18 @@ public class ListaAgendamentoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 abreFormularioModoInsereAgendamento();
+            }
+        });
+    }
+
+    private void configuraFabCriaUsuario() {
+        FloatingActionButton botaoNovoUsuario = findViewById(R.id.activity_cadastro_usuario_fab_novo_usuario);
+        botaoNovoUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //aqui metodo da view cria usuario
+                Intent it = new Intent(ListaAgendamentoActivity.this, CadastroUsuarioActivity.class);
+                startActivity(it);
             }
         });
     }

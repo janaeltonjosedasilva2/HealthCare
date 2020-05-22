@@ -10,8 +10,9 @@ import androidx.room.TypeConverters;
 import br.saojudas.mobile.healthcare.database.converter.ConverterTime;
 import br.saojudas.mobile.healthcare.database.dao.RoomAgendamentoDAO;
 import br.saojudas.mobile.healthcare.model.Agendamento;
+import br.saojudas.mobile.healthcare.model.CadastroUsuario;
 
-@Database(entities = {Agendamento.class}, version = 2, exportSchema = false)
+@Database(entities = { Agendamento.class, CadastroUsuario.class }, version = 3, exportSchema = false)
 @TypeConverters({ConverterTime.class})
 public abstract class HaelthCareDatabase extends RoomDatabase {
 

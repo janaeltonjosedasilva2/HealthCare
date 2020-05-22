@@ -7,6 +7,14 @@
     <string name="remover">Remover</string>
     <string name="vezes_ao_dia">Vezes ao dia</string>
     <string name="hor_rio_da_primeira_dose">Horário da primeira dose</string>
+    <string name="campoNome">TextView</string>
+    <string name="nome_completo">Nome completo</string>
+    <string name="data_de_nascimento">Data de Nascimento</string>
+    <string name="contato_paciente">Contato paciente</string>
+    <string name="contato_de_emerg_ncia">Contato de Emergência</string>
+    <string name="telefone_do_contato_de_emerg_ncia">Telefone do Contato de Emergência</string>
+    <string name="telefone_de_contato_do_paciente">Telefone de contato do paciente</string>
+    <string name="salvar">salvar</string>
     <string-array android:name="horarios" name="frequencia_remedio">
         <item>1</item>
         <item>2</item>

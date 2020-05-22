@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.CadastroUsuarioActivity"/>
         <activity android:name=".ui.activity.FormularioAgendamentoActivity"/>
-        <activity android:name=".ui.activity.ListaAgendamentoActivity">
+        <activity android:name=".ui.activity.ListaAgendamentoActivity"/>
+        <activity android:name=".ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

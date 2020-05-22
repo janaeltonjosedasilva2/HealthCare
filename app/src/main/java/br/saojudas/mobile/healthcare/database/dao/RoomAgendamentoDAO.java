@@ -28,12 +28,12 @@ public interface RoomAgendamentoDAO {
     @Insert
     void salvarUsuario(CadastroUsuario cadastroUsuario);
 
-    @Query("SELECT * FROM usuario WHERE login LIKE :login LIMIT 1")
-    CadastroUsuario findByLogin(String login);
-
-    @Delete
-    void removeUsuario(CadastroUsuario cadastroUsuario);
-
-    @Update
-    void editarUsuario(CadastroUsuario cadastroUsuario);
+//    @Query("SELECT * FROM usuario WHERE login LIKE :login LIMIT 1")
+//    CadastroUsuario findByLogin(String login);
+//
+//    @Delete
+//    void removeUsuario(CadastroUsuario cadastroUsuario);
+//
+//    @Update
+//    void editarUsuario(CadastroUsuario cadastroUsuario);
 }

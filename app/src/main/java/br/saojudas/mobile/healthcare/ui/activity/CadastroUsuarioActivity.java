@@ -2,7 +2,6 @@ package br.saojudas.mobile.healthcare.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -10,13 +9,9 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import br.saojudas.mobile.healthcare.R;
 import br.saojudas.mobile.healthcare.database.HaelthCareDatabase;
-import br.saojudas.mobile.healthcare.database.dao.RoomAgendamentoDAO;
+import br.saojudas.mobile.healthcare.database.dao.RoomUsuarioDAO;
 import br.saojudas.mobile.healthcare.model.CadastroUsuario;
 import br.saojudas.mobile.healthcare.ui.adapter.CadastroUsuarioAdapter;
 
@@ -32,7 +27,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private EditText campoTelefone;
     private EditText campoContatoEmergencia;
     private EditText campoTelefoneEmergencia;
-    private RoomAgendamentoDAO dao;
+    private RoomUsuarioDAO dao;
     private CadastroUsuario cadastroUsuario;
     private CadastroUsuarioAdapter cadastroUsuarioAdapter;
     private Spinner sp;
@@ -42,7 +37,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_usuario);
         HaelthCareDatabase database = HaelthCareDatabase.getInstance(this);
-        dao = database.getRoomAgendamentoDAO();
+        dao = database.getRoomUsuarioDAO();
         setTitle(TITULO_APPBAR_CADASTRO_USUARIO);
         cadastroUsuarioAdapter = new CadastroUsuarioAdapter(this);
 
@@ -53,7 +48,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         campoTelefone = findViewById(R.id.campoTelefone);
         campoContatoEmergencia = findViewById(R.id.campoContatoEmergencia);
         campoTelefoneEmergencia = findViewById(R.id.campoTelefoneEmergencia);
-
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, campoSexo);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -82,6 +76,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         usuario.setTelefone(campoTelefone.getText().toString());
         usuario.setContatoEmergencia(campoContatoEmergencia.getText().toString());
         usuario.setTelefoneEmergencia(campoTelefoneEmergencia.getText().toString());
+        dao.salvarUsuario(usuario);
     }
 
 }

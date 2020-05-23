@@ -15,6 +15,8 @@
     <string name="telefone_do_contato_de_emerg_ncia">Telefone do Contato de Emergência</string>
     <string name="telefone_de_contato_do_paciente">Telefone de contato do paciente</string>
     <string name="salvar">salvar</string>
+    <string name="Login">login</string>
+    <string name="txtCadastro">TextView</string>
     <string-array android:name="horarios" name="frequencia_remedio">
         <item>1</item>
         <item>2</item>

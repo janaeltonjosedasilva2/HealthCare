@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(primaryKeys = "id", indices = {@Index(value = "login", unique = true)}, tableName = "usuario")
+@Entity(tableName = "usuario", indices = {@Index(value = "login", unique = true)})
 public class CadastroUsuario implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id = 0;

@@ -33,8 +33,6 @@ public class ListaAgendamentoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_agendamento);
         listaAgendamentoView = new ListaAgendamentoView(this);
         setTitle(TITULO_APPBAR);
-        configuraFabCriaAgendamento();
-        configuraFabCriaUsuario();
         criaListaAgendamentos();
     }
 
@@ -53,32 +51,6 @@ public class ListaAgendamentoActivity extends AppCompatActivity {
             listaAgendamentoView.confirmaRemocao(item);
         }
         return super.onContextItemSelected(item);
-    }
-
-    private void configuraFabCriaAgendamento() {
-        FloatingActionButton botaoNovoAgendamento = findViewById(R.id.activity_lista_agendamento_fab_novo_agendamento);
-        botaoNovoAgendamento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abreFormularioModoInsereAgendamento();
-            }
-        });
-    }
-
-    private void configuraFabCriaUsuario() {
-        FloatingActionButton botaoNovoUsuario = findViewById(R.id.activity_cadastro_usuario_fab_novo_usuario);
-        botaoNovoUsuario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //aqui metodo da view cria usuario
-                Intent it = new Intent(ListaAgendamentoActivity.this, CadastroUsuarioActivity.class);
-                startActivity(it);
-            }
-        });
-    }
-
-    private void abreFormularioModoInsereAgendamento() {
-        startActivity(new Intent(this, FormularioAgendamentoActivity.class));
     }
 
     @Override

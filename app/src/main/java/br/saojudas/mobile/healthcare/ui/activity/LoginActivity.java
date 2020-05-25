@@ -36,10 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         HaelthCareDatabase database = HaelthCareDatabase.getInstance(this);
         dao = database.getRoomUsuarioDAO();
         setTitle(TITULO_APPBAR_LOGIN);
-
-        editLogin = findViewById(R.id.editLogin);
-        editSenha = findViewById(R.id.editSenha);
-        btnCadastro = findViewById(R.id.btnCadastro);
         abreCadastro();
         abreDashboard();
     }
@@ -49,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         btnCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(LoginActivity.this, CadastroUsuario.class);
+                Intent it = new Intent(LoginActivity.this, CadastroUsuarioActivity.class);
                 startActivity(it);
             }
         });

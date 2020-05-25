@@ -1,99 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp" >
+    android:background="#fff"
+    android:orientation="vertical"
+    android:padding="40dp"
+    tools:context=".ui.activity.LoginActivity">
 
-    <TextView
-        android:id="@+id/txtLogin"
-        android:layout_width="90dp"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:fontFamily="@font/annie_use_your_telescope"
-        android:text="@string/Login"
-        android:textSize="30dp" />
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/dash_health"
+        android:transitionName="logo_image" />
 
-    <EditText
-        android:id="@+id/campoLoginLogin"
-        android:layout_width="300dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/txtLogin"
-        android:layout_alignBottom="@+id/txtLogin"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_toEndOf="@+id/txtLogin"
-        android:layout_toRightOf="@+id/txtLogin"
-        android:ems="10"
-        android:fontFamily="@font/annie_use_your_telescope"
-        android:inputType="textPersonName" />
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtSenha"
-        android:layout_width="90dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/txtLogin"
-        android:layout_alignEnd="@+id/txtLogin"
-        android:layout_alignRight="@+id/txtLogin"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/annie_use_your_telescope"
-        android:text="Senha"
-        android:textSize="30dp" />
+        <EditText
+            android:id="@+id/editLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/campoSenhaLogin"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/txtSenha"
-        android:layout_alignBottom="@+id/txtSenha"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_toEndOf="@+id/txtSenha"
-        android:layout_toRightOf="@+id/txtSenha"
-        android:fontFamily="@font/annie_use_your_telescope"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/editSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/btnEntrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/campoSenhaLogin"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="90dp"
-        android:layout_marginLeft="81dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="90dp"
-        android:layout_marginRight="96dp"
-        android:fontFamily="@font/annie_use_your_telescope"
-        android:text="Entrar"
-        android:textSize="20dp" />
+        <Button
+            android:id="@+id/btnEsqueceuSenha"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="5dp"
+            android:background="#00000000"
+            android:elevation="0dp"
+            android:text="Forget Password?" />
 
-    <Space
-        android:id="@+id/space1"
-        android:layout_width="395dp"
-        android:layout_height="47dp"
-        android:layout_below="@+id/btnEntrar"
-        android:layout_marginTop="3dp" />
+        <Button
+            android:id="@+id/btnEntrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#000"
+            android:text="Entrar"
+            android:textColor="#fff" />
 
-    <TextView
-        android:id="@+id/txtCadastro"
-        android:layout_width="306dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/space1"
-        android:layout_marginTop="68dp"
-        android:onClick="onClick"
-        android:clickable="true"
-        android:fontFamily="@font/annie_use_your_telescope"
-        android:textSize="30dp"
-        android:text="Novo por aqui? Registre-se!" />
+        <Button
+            android:id="@+id/btnCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="5dp"
+            android:background="#00000000"
+            android:elevation="0dp"
+            android:text="Novo por aqui? Registre-se!"
+            android:textColor="#000" />
 
-</RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

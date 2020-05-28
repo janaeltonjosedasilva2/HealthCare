@@ -17,9 +17,13 @@ public interface RoomUsuarioDAO {
 //    @Query("SELECT * FROM usuario")
 //    List<CadastroUsuario> allUsuarios();
 
-//    @Query("SELECT * FROM usuario WHERE login LIKE :login LIMIT 1")
+//    @Query("SELECT login FROM usuario WHERE login LIKE :login LIMIT 1")
 //    CadastroUsuario findByLogin(String login);
-//
+
+    @Query("SELECT * FROM usuario WHERE senha LIKE :senha AND login LIKE :login LIMIT 1")
+    CadastroUsuario findByLoginAndSenha(String login, String senha);
+
+
 //    @Delete
 //    void removeUsuario(CadastroUsuario cadastroUsuario);
 //

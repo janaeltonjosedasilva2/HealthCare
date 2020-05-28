@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,8 +37,47 @@ public class LoginActivity extends AppCompatActivity {
         HaelthCareDatabase database = HaelthCareDatabase.getInstance(this);
         dao = database.getRoomUsuarioDAO();
         setTitle(TITULO_APPBAR_LOGIN);
+        carregarCampos();
+        setBtnEntrar();
         abreCadastro();
-        abreDashboard();
+    }
+    private void setBtnEntrar(){
+        btnEntrar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                if (validarLogin()){
+                    cadastroUsuario = dao.findByLoginAndSenha(editLogin.getText().toString(), editSenha.getText().toString());
+                    if (cadastroUsuario != null){
+                        Toast.makeText(LoginActivity.this, "Login realizado com sucesso !", Toast.LENGTH_SHORT).show();
+                        abreDashboard();
+                    } else{
+                        Toast.makeText(LoginActivity.this, "Login e senha invalido !", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+    }
+
+    private Boolean validarLogin(){
+        Boolean validado = false;
+
+        String nomeLogin = editLogin.getText().toString();
+        String senhaLogin = editSenha.getText().toString();
+
+        if (nomeLogin.isEmpty() || senhaLogin.isEmpty()){
+            Toast.makeText(this,"Insira o Login e sua Senha",Toast.LENGTH_SHORT).show();
+        } else {
+            validado = true;
+        }
+        return validado;
+
+    }
+
+    private void carregarCampos(){
+        editLogin = findViewById(R.id.editLogin);
+        editSenha = findViewById(R.id.editSenha);
+        btnEntrar = findViewById(R.id.btnEntrar);
+        btnCadastro = findViewById(R.id.btnCadastro);
     }
 
     private void abreCadastro() {

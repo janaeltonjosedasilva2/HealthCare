@@ -7,11 +7,11 @@
     android:background="#fff"
     android:orientation="vertical"
     android:padding="40dp"
-    tools:context=".ui.activity.LoginActivity">
+    tools:context=".ui.activity.EsqueceuSenhaActivity">
 
     <ImageView
         android:id="@+id/logo_image"
-        android:layout_width="150dp"
+        android:layout_width="326dp"
         android:layout_height="150dp"
         android:src="@drawable/dash_health"
         android:transitionName="logo_image" />
@@ -28,45 +28,52 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/Login"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editSenha"
+            android:id="@+id/editDataNasc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/data_de_nascimento"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/editNovaSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/nova_senha"
             android:inputType="textPassword" />
 
-        <Button
-            android:id="@+id/btnEsqueceuSenha"
-            android:layout_width="200dp"
+        <EditText
+            android:id="@+id/editConfirmaSenha"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_margin="5dp"
-            android:background="#00000000"
-            android:elevation="0dp"
-            android:text="Forget Password?" />
+            android:ems="10"
+            android:hint="@string/confirma_senha"
+            android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/btnEntrar"
+            android:id="@+id/btnAlterarSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="#000"
-            android:onClick="setBtnEntrar"
-            android:text="Entrar"
+            android:text="Alterar Senha"
             android:textColor="#fff" />
 
         <Button
-            android:id="@+id/btnCadastro"
+            android:id="@+id/btnVoltarLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_margin="5dp"
             android:background="#00000000"
             android:elevation="0dp"
-            android:text="Novo por aqui? Registre-se!"
+            android:text="Lembrou sua senha? Fazer Login !"
             android:textColor="#000" />
 
     </LinearLayout>

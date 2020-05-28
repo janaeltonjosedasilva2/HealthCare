@@ -13,6 +13,7 @@ public class CadastroUsuario implements Serializable {
     private int id = 0;
     @ColumnInfo(name = "nome")
     private String nome;
+    @ColumnInfo(name = "login")
     private String login;
     @ColumnInfo(name = "senha")
     private String senha;

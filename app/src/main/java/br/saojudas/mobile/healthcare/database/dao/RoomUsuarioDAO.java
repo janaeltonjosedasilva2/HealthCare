@@ -23,10 +23,16 @@ public interface RoomUsuarioDAO {
     @Query("SELECT * FROM usuario WHERE senha LIKE :senha AND login LIKE :login LIMIT 1")
     CadastroUsuario findByLoginAndSenha(String login, String senha);
 
+    @Query("SELECT * FROM usuario WHERE data_nascimento = :dataNascimento AND login = :login LIMIT 1")
+    CadastroUsuario findByLoginAndDataNasc(String login, String dataNascimento);
+
+//    @Query("UPDATE usuario SET senha = :senha WHERE login LIKE :login AND data_nascimento LIKE :dataNascimento")
+//    CadastroUsuario updateSenha(String senha, String login, String dataNascimento);
+
 
 //    @Delete
 //    void removeUsuario(CadastroUsuario cadastroUsuario);
 //
-//    @Update
-//    void editarUsuario(CadastroUsuario cadastroUsuario);
+    @Update
+    void editarUsuario(CadastroUsuario cadastroUsuario);
 }

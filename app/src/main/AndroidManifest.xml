@@ -13,6 +13,7 @@
         <activity android:name=".ui.activity.FormularioAgendamentoActivity"/>
         <activity android:name=".ui.activity.ListaAgendamentoActivity"/>
         <activity android:name=".ui.activity.DashboardActivity"/>
+        <activity android:name=".ui.activity.EsqueceuSenhaActivity"/>
         <activity android:name=".ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

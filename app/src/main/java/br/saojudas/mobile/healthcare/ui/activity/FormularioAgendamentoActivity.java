@@ -1,19 +1,28 @@
 package br.saojudas.mobile.healthcare.ui.activity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 
 import br.saojudas.mobile.healthcare.R;
@@ -21,10 +30,12 @@ import br.saojudas.mobile.healthcare.database.HaelthCareDatabase;
 import br.saojudas.mobile.healthcare.database.dao.RoomAgendamentoDAO;
 import br.saojudas.mobile.healthcare.model.Agendamento;
 import br.saojudas.mobile.healthcare.ui.adapter.FormularioAgendamentoAdapter;
+import br.saojudas.mobile.healthcare.ui.helper.TimePickerHelper;
+import br.saojudas.mobile.healthcare.ui.receiver.AlertReceiver;
 
 import static br.saojudas.mobile.healthcare.ui.activity.ConstantesActivities.CHAVE_AGENDAMENTO;
 
-public class FormularioAgendamentoActivity extends AppCompatActivity{
+public class FormularioAgendamentoActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
 
     private static final String TITULO_APPBAR_NOVO_AGENDAMENTO = "Novo agendamento";
     private static final String TITULO_APPBAR_EDITA_AGENDAMENTO = "Editar agendamento";
@@ -37,6 +48,7 @@ public class FormularioAgendamentoActivity extends AppCompatActivity{
     private RoomAgendamentoDAO dao;
     private Agendamento agendamento;
     private FormularioAgendamentoAdapter adapter;
+    private TextView setAlarme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +58,14 @@ public class FormularioAgendamentoActivity extends AppCompatActivity{
         dao = database.getRoomAgendamentoDAO();
         adapter = new FormularioAgendamentoAdapter(this);
         adapter.criaSpinner(this);
+        Button alarme = findViewById(R.id.notificacao);
+        alarme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment alarmee = new TimePickerHelper();
+                alarmee.show(getSupportFragmentManager(),"notificacao");
+            }
+        });
         inicializacaoDosCampos();
         carregaAgendamento();
         displayTimePicker();
@@ -137,5 +157,33 @@ public class FormularioAgendamentoActivity extends AppCompatActivity{
         agendamento.setDoseMedicamento(dose);
         agendamento.setFrequenciaMedicamento(frequenciaMedicamento);
         agendamento.setHoraPrimeiraDose(primeiraDose);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void iniciarAlarme(Calendar c) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        if (c.before(Calendar.getInstance())) {
+            c.add(Calendar.DATE, 1);
+        }
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+    }
+
+    private void inserirTimeText(Calendar c) {
+        String timeText = "Alarm set for: ";
+        timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
+        setAlarme.setText(timeText);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        c.set(Calendar.MINUTE, minute);
+        c.set(Calendar.SECOND, 0);
+        inserirTimeText(c);
+        iniciarAlarme(c);
     }
 }

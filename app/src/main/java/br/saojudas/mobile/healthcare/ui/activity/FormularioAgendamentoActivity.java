@@ -35,7 +35,7 @@ import br.saojudas.mobile.healthcare.ui.receiver.AlertReceiver;
 
 import static br.saojudas.mobile.healthcare.ui.activity.ConstantesActivities.CHAVE_AGENDAMENTO;
 
-public class FormularioAgendamentoActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
+public class FormularioAgendamentoActivity extends AppCompatActivity {
 
     private static final String TITULO_APPBAR_NOVO_AGENDAMENTO = "Novo agendamento";
     private static final String TITULO_APPBAR_EDITA_AGENDAMENTO = "Editar agendamento";
@@ -48,7 +48,7 @@ public class FormularioAgendamentoActivity extends AppCompatActivity implements 
     private RoomAgendamentoDAO dao;
     private Agendamento agendamento;
     private FormularioAgendamentoAdapter adapter;
-    private TextView setAlarme;
+    private TextView alarme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +58,6 @@ public class FormularioAgendamentoActivity extends AppCompatActivity implements 
         dao = database.getRoomAgendamentoDAO();
         adapter = new FormularioAgendamentoAdapter(this);
         adapter.criaSpinner(this);
-        Button alarme = findViewById(R.id.notificacao);
-        alarme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment alarmee = new TimePickerHelper();
-                alarmee.show(getSupportFragmentManager(),"notificacao");
-            }
-        });
         inicializacaoDosCampos();
         carregaAgendamento();
         displayTimePicker();
@@ -74,6 +66,7 @@ public class FormularioAgendamentoActivity extends AppCompatActivity implements 
     private void displayTimePicker() {
         campoHoraDose.setInputType(InputType.TYPE_NULL);
         campoHoraDose.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -84,6 +77,12 @@ public class FormularioAgendamentoActivity extends AppCompatActivity implements 
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                                Calendar c = Calendar.getInstance();
+                                c.set(Calendar.HOUR_OF_DAY, sHour);
+                                c.set(Calendar.MINUTE, sMinute);
+                                c.set(Calendar.SECOND, 0);
+                                iniciarAlarme(c);
+                                inserirTimeText(c);
                                 campoHoraDose.setText(sHour + ":" + sMinute);
                             }
                         }, hour, minutes, true);
@@ -143,6 +142,7 @@ public class FormularioAgendamentoActivity extends AppCompatActivity implements 
         campoNomeMedico = findViewById(R.id.activity_formulario_agendamento_EditText_nomeMedico);
         campoFrequenciaMedicamento = (Spinner) findViewById(R.id.activity_formulario_agendamento_spinner_frequencia_remedio);
         campoHoraDose = (EditText) findViewById(R.id.activity_formulario_agendamento_EditText_horaDose);
+        alarme = findViewById(R.id.alarme);
     }
 
     private void preencheAgendamento() {
@@ -164,26 +164,24 @@ public class FormularioAgendamentoActivity extends AppCompatActivity implements 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
-        if (c.before(Calendar.getInstance())) {
+        boolean a = c.before(Calendar.getInstance());
+        if (a) {
             c.add(Calendar.DATE, 1);
         }
+        c.getTimeInMillis();
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
     }
 
     private void inserirTimeText(Calendar c) {
-        String timeText = "Alarm set for: ";
+        String timeText = "Dose agendada para: ";
         timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
-        setAlarme.setText(timeText);
+        alarme.setText(timeText);
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
-        c.set(Calendar.MINUTE, minute);
-        c.set(Calendar.SECOND, 0);
-        inserirTimeText(c);
-        iniciarAlarme(c);
+    private void cancelaAlarme() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        alarmManager.cancel(pendingIntent);
+        alarme.setText("Alarm canceled");
     }
 }

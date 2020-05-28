@@ -60,11 +60,11 @@
             android:ems="10"
             android:inputType="time" />
 
-        <Button
-            android:id="@+id/notificacao"
+        <TextView
+            android:id="@+id/alarme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="notificacao" />
+            android:text=" " />
 
     </LinearLayout>
 </ScrollView>

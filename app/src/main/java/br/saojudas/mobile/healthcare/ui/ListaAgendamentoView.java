@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import br.saojudas.mobile.healthcare.database.HaelthCareDatabase;
 import br.saojudas.mobile.healthcare.database.dao.RoomAgendamentoDAO;
 import br.saojudas.mobile.healthcare.model.Agendamento;
+import br.saojudas.mobile.healthcare.ui.activity.FormularioAgendamentoActivity;
 import br.saojudas.mobile.healthcare.ui.adapter.ListaAgendamentoAdapter;
 
 public class ListaAgendamentoView {

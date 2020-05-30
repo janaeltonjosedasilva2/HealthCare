@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editSenha;
     private Button btnEntrar;
     private Button btnCadastro;
+    private Button btnEsqueceuSenha;
     private RoomUsuarioDAO dao;
     private CadastroUsuario cadastroUsuario;
     private CadastroUsuarioAdapter cadastroUsuarioAdapter;
@@ -36,8 +38,48 @@ public class LoginActivity extends AppCompatActivity {
         HaelthCareDatabase database = HaelthCareDatabase.getInstance(this);
         dao = database.getRoomUsuarioDAO();
         setTitle(TITULO_APPBAR_LOGIN);
+        carregarCampos();
+        abreEsqueciSenha();
         abreCadastro();
-        abreDashboard();
+    }
+
+    public void setBtnEntrar(View view){
+        if (validarLogin()){
+            String loginView = editLogin.getText().toString();
+            String senhaView =  editSenha.getText().toString();
+            cadastroUsuario = dao.findByLoginAndSenha(loginView,senhaView);
+            if (cadastroUsuario != null
+                    && cadastroUsuario.getLogin().equals(loginView)
+                    && cadastroUsuario.getSenha().equals(senhaView)){
+                Toast.makeText(LoginActivity.this, "Login realizado com sucesso !", Toast.LENGTH_SHORT).show();
+                abreDashboard();
+            } else{
+                Toast.makeText(LoginActivity.this, "Login e senha invalido !", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private Boolean validarLogin(){
+        Boolean validado = false;
+
+        String nomeLogin = editLogin.getText().toString();
+        String senhaLogin = editSenha.getText().toString();
+
+        if (nomeLogin.isEmpty() || senhaLogin.isEmpty()){
+            Toast.makeText(this,"Insira o Login e sua Senha",Toast.LENGTH_SHORT).show();
+        } else {
+            validado = true;
+        }
+        return validado;
+
+    }
+
+    private void carregarCampos(){
+        editLogin = findViewById(R.id.editLogin);
+        editSenha = findViewById(R.id.editSenha);
+        btnEntrar = findViewById(R.id.btnEntrar);
+        btnCadastro = findViewById(R.id.btnCadastro);
+        btnEsqueceuSenha = findViewById(R.id.btnEsqueceuSenha);
     }
 
     private void abreCadastro() {
@@ -56,6 +98,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(LoginActivity.this, DashboardActivity.class);
+                startActivity(it);
+            }
+        });
+    }
+    private void abreEsqueciSenha() {
+        Button btnEsqueceuSenha = findViewById(R.id.btnEsqueceuSenha);
+        btnEsqueceuSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(LoginActivity.this, EsqueceuSenhaActivity.class);
                 startActivity(it);
             }
         });

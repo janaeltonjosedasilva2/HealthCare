@@ -51,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
             if (cadastroUsuario != null
                     && cadastroUsuario.getLogin().equals(loginView)
                     && cadastroUsuario.getSenha().equals(senhaView)){
+                // seta a sessao atual
+                CadastroUsuario.setSession(cadastroUsuario);
                 Toast.makeText(LoginActivity.this, "Login realizado com sucesso !", Toast.LENGTH_SHORT).show();
                 abreDashboard();
             } else{
@@ -60,18 +62,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private Boolean validarLogin(){
-        Boolean validado = false;
-
         String nomeLogin = editLogin.getText().toString();
         String senhaLogin = editSenha.getText().toString();
 
-        if (nomeLogin.isEmpty() || senhaLogin.isEmpty()){
-            Toast.makeText(this,"Insira o Login e sua Senha",Toast.LENGTH_SHORT).show();
-        } else {
-            validado = true;
-        }
-        return validado;
 
+        if (nomeLogin.isEmpty() || senhaLogin.isEmpty()) {
+            Toast.makeText(this, "Insira o Login e sua Senha", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private void carregarCampos(){

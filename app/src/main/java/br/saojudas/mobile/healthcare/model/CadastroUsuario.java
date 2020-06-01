@@ -41,6 +41,8 @@ public class CadastroUsuario implements Serializable {
         this.telefone = telefone;
         this.contatoEmergencia = contatoEmergencia;
         this.telefoneEmergencia = telefoneEmergencia;
+
+        setSession(this);
     }
 
     public CadastroUsuario() {

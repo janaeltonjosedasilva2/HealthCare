@@ -50,6 +50,7 @@ public class EditaUsuarioActivity extends AppCompatActivity {
         editaUsuarioAdapter = new CadastroUsuarioAdapter(this);
 
         campoNome = findViewById(R.id.campoNome);
+        campoSenha = findViewById(R.id.campoSenha);
         campoDataNascimento = findViewById(R.id.campoDataNascimento);
         campoTelefone = findViewById(R.id.campoTelefone);
         campoContatoEmergencia = findViewById(R.id.campoContatoEmergencia);
@@ -109,12 +110,16 @@ public class EditaUsuarioActivity extends AppCompatActivity {
 
 
     public void atualizarUsuario(View view) {
+//        if (senha.equals(campoConfirmaSenha.getText().toString())) {
             CadastroUsuario usu = CadastroUsuario.session();
             usu.setNome(campoNome.getText().toString());
+//            usu.setSenha(campoSenha.getText().toString());
             usu.setDataNascimento(campoDataNascimento.getText().toString());
             usu.setTelefone(campoTelefone.getText().toString());
             usu.setContatoEmergencia(campoContatoEmergencia.getText().toString());
             usu.setTelefone(campoTelefoneEmergencia.getText().toString());
+
+//            String senha = usu.getSenha();
 
             int usu_id = usu.getId();
 
@@ -123,5 +128,12 @@ public class EditaUsuarioActivity extends AppCompatActivity {
 
             // pega usuario novamente
             CadastroUsuario.setSession(dao.findById(usu_id));
+            System.out.print(CadastroUsuario.session());
+
+            finish();
+//        } else {
+//            Toast.makeText(this,"Senhas estão diferentes, digite novamente!",Toast.LENGTH_SHORT).show();
+//        }
+
     }
 }

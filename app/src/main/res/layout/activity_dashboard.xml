@@ -47,8 +47,8 @@
 
         <ImageView
             android:id="@+id/dash_health1"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
+            android:layout_width="168dp"
+            android:layout_height="130dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -78,8 +78,10 @@
                     android:id="@+id/relativeLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick="abreCadastro"
-                    android:clickable="true">
+                    android:background="#F7F9FA"
+                    android:clickable="true"
+                    android:elevation="20dp"
+                    android:onClick="abreCadastro" >
 
                     <TextView
                         android:id="@+id/textDados"
@@ -103,7 +105,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@id/linearLayout1"
             android:layout_width="0dp"
             android:layout_height="175dp"
             android:orientation="horizontal"
@@ -123,99 +125,7 @@
                     android:id="@+id/relativeLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:onClick="abreListaRemedios" >
-
-                    <TextView
-                        android:id="@+id/textListaRemedios"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/listRemedyImg"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:text="Lista de Remédios"
-                        android:textSize="22sp"
-                        app:fontFamily="sans-serif" />
-
-                    <ImageView
-                        android:id="@+id/listRemedyImg"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/list_remedy" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="0dp"
-            android:layout_height="175dp"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1">
-
-                <RelativeLayout
-                    android:id="@+id/relativeLayout3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:onClick="abreNovoRemedio">
-
-                    <TextView
-                        android:id="@+id/textNovoRemedio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/remedyImg"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:text="Novo remédio"
-                        android:textSize="22sp"
-                        app:fontFamily="sans-serif" />
-
-                    <ImageView
-                        android:id="@+id/remedyImg"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/remedy" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@id/linearLayout4"
-            android:layout_width="0dp"
-            android:layout_height="175dp"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1">
-
-                <RelativeLayout
-                    android:id="@+id/relativeLayout4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:background="#F7F9FA"
                     android:clickable="true"
                     android:onClick="abreListaAgendamentos">
 
@@ -242,7 +152,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout5"
+            android:id="@+id/linearLayout2"
             android:layout_width="0dp"
             android:layout_height="175dp"
             android:orientation="horizontal"
@@ -250,7 +160,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
@@ -259,9 +169,10 @@
                 android:layout_weight="1">
 
                 <RelativeLayout
-                    android:id="@+id/relativeLayout5"
+                    android:id="@+id/relativeLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="#F7F9FA"
                     android:clickable="true"
                     android:onClick="abreNovoAgendamento">
 

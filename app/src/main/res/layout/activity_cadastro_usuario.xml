@@ -1,136 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:padding="40dp"
+    tools:context=".ui.activity.CadastroUsuarioActivity">
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="187dp"
+        android:layout_height="wrap_content"
+        android:text="Dados Pessoais"
+        android:textSize="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
-        <ScrollView
+        <EditText
+            android:id="@+id/campoNome"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/nome_completo"
+            android:inputType="textPersonName" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
+        <EditText
+            android:id="@+id/campoDataNascimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
+        <EditText
+            android:id="@+id/campoTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone" />
+        <EditText
+            android:id="@+id/campoContatoEmergencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/contato_de_emerg_ncia"
+            android:inputType="textPersonName" />
 
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/annie_use_your_telescope"
-                    android:text="Dados de Acesso"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        <EditText
+            android:id="@+id/campoTelefoneEmergencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/telefone_do_contato_de_emerg_ncia"
+            android:inputType="phone" />
 
-                <EditText
-                    android:id="@+id/campoNome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:fontFamily="@font/annie_use_your_telescope"
-                    android:hint="@string/nome_completo"
-                    android:inputType="textPersonName" />
+        <Spinner
+            android:id="@+id/campoSexo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/annie_use_your_telescope"
+            android:paddingStart="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="2dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="2dp"
+            android:spinnerMode="dropdown"
+            tools:visibility="visible" />
 
-                <EditText
-                    android:id="@+id/campoDataNascimento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:fontFamily="@font/annie_use_your_telescope"
-                    android:hint="@string/data_de_nascimento"
-                    android:inputType="date" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="23dp" />
 
-                <EditText
-                    android:id="@+id/campoTelefone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:fontFamily="@font/annie_use_your_telescope"
-                    android:hint="@string/telefone_de_contato_do_paciente"
-                    android:inputType="phone" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dados de Acesso"
+            android:textSize="20dp" />
 
-                <EditText
-                    android:id="@+id/campoContatoEmergencia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:fontFamily="@font/annie_use_your_telescope"
-                    android:hint="@string/contato_de_emerg_ncia"
-                    android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/campoLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="login"
+            android:inputType="textPersonName" />
 
-                <EditText
-                    android:id="@+id/campoTelefoneEmergencia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:fontFamily="@font/annie_use_your_telescope"
-                    android:hint="@string/telefone_do_contato_de_emerg_ncia"
-                    android:inputType="phone" />
-
-                <Spinner
-                    android:id="@+id/campoSexo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/annie_use_your_telescope"
-                    android:paddingStart="20dp"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="2dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="2dp"
-                    android:spinnerMode="dropdown"
-                    tools:visibility="visible" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="23dp" />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/annie_use_your_telescope"
-                    android:text="Dados Pessoais"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-                <EditText
-                    android:id="@+id/campoLogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:fontFamily="@font/annie_use_your_telescope"
-                    android:hint="login"
-                    android:inputType="textPersonName" />
-
-                <EditText
-                    android:id="@+id/campoSenha"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:fontFamily="@font/annie_use_your_telescope"
-                    android:hint="Senha secreta"
-                    android:inputType="textPassword" />
-
-                <Button
-                    android:id="@+id/btnSalvarUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="salvarUsuario"
-                    android:text="@string/salvar" />
-
-            </LinearLayout>
-        </ScrollView>
-
+        <EditText
+            android:id="@+id/campoSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Senha secreta"
+            android:inputType="textPassword" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnSalvarUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#000"
+        android:elevation="0dp"
+        android:onClick="salvarUsuario"
+        android:text="Salvar"
+        android:textColor="#fff" />
+</LinearLayout>

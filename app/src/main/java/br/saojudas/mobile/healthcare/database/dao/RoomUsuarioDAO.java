@@ -14,11 +14,8 @@ public interface RoomUsuarioDAO {
     @Insert
     void salvarUsuario(CadastroUsuario cadastroUsuario);
 
-//    @Query("SELECT * FROM usuario")
-//    List<CadastroUsuario> allUsuarios();
-
-//    @Query("SELECT login FROM usuario WHERE login LIKE :login LIMIT 1")
-//    CadastroUsuario findByLogin(String login);
+    @Query("SELECT * FROM usuario WHERE id = :id")
+    CadastroUsuario findById(int id);
 
     @Query("SELECT * FROM usuario WHERE senha LIKE :senha AND login LIKE :login LIMIT 1")
     CadastroUsuario findByLoginAndSenha(String login, String senha);
@@ -26,8 +23,11 @@ public interface RoomUsuarioDAO {
     @Query("SELECT * FROM usuario WHERE data_nascimento = :dataNascimento AND login = :login LIMIT 1")
     CadastroUsuario findByLoginAndDataNasc(String login, String dataNascimento);
 
-//    @Query("UPDATE usuario SET senha = :senha WHERE login LIKE :login AND data_nascimento LIKE :dataNascimento")
-//    CadastroUsuario updateSenha(String senha, String login, String dataNascimento);
+//    @Query("UPDATE usuario SET nome = :nome, data_nascimento = :dataNascimento, senha = :senha, " +
+//            "telefone = :telefone, contato_emergencia = :contatoEmergencia, telefone_emergencia = :telefoneEmergencia " +
+//            "WHERE id= :id")
+//    void updateUsuario(int id, String nome, String dataNascimento, String senha,
+//                                String telefone, String contatoEmergencia, String telefoneEmergencia);
 
 
 //    @Delete

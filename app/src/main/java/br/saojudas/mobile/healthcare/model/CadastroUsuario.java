@@ -28,6 +28,8 @@ public class CadastroUsuario implements Serializable {
     @ColumnInfo(name = "telefone_emergencia")
     private String telefoneEmergencia;
 
+    private static CadastroUsuario _session;
+
     public CadastroUsuario(int id, String nome, String login, String senha, String dataNascimento,
          String sexo, String telefone, String contatoEmergencia, String telefoneEmergencia) {
         this.id = id;
@@ -112,5 +114,13 @@ public class CadastroUsuario implements Serializable {
 
     public void setTelefoneEmergencia(String telefoneEmergencia) {
         this.telefoneEmergencia = telefoneEmergencia;
+    }
+
+    public static CadastroUsuario session(){
+        return _session;
+    }
+
+    public static void setSession(CadastroUsuario session){
+        _session = session;
     }
 }

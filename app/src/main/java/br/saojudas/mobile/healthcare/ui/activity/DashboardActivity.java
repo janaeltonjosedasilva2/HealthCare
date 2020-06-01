@@ -43,16 +43,16 @@ public class DashboardActivity extends AppCompatActivity {
         relativeLayout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(DashboardActivity.this, CadastroUsuarioActivity.class);
+                Intent it = new Intent(DashboardActivity.this, EditaUsuarioActivity.class);
                 startActivity(it);
             }
         });
     }
 
     private void abreListaAgendamento() {
-        RelativeLayout relativeLayout4 = findViewById(R.id.relativeLayout4);
+        RelativeLayout relativeLayout2 = findViewById(R.id.relativeLayout2);
 
-        relativeLayout4.setOnClickListener(new View.OnClickListener() {
+        relativeLayout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(DashboardActivity.this, ListaAgendamentoActivity.class);
@@ -62,8 +62,8 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void abreNovoAgendamento() {
-        RelativeLayout relativeLayout5 = findViewById(R.id.relativeLayout5);
-        relativeLayout5.setOnClickListener(new View.OnClickListener() {
+        RelativeLayout relativeLayout3 = findViewById(R.id.relativeLayout3);
+        relativeLayout3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(DashboardActivity.this, FormularioAgendamentoActivity.class);
@@ -71,30 +71,4 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
     }
-
-    //QUANDO IMPLEMENTAR A NOVA ACTIVITY DE LISTA DE REMEDIOS
-//    private void abreListaRemedios() {
-//        RelativeLayout relativeLayout2 = findViewById(R.id.relativeLayout2);
-//
-//        relativeLayout2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent it = new Intent(DashboardActivity.this, ListaRemediosActivity.class);
-//                startActivity(it);
-//            }
-//        });
-//    }
-
-    //QUANDO IMPLEMENTAR A NOVA ACTIVITY DE ADICIONAR NOVO REMEDIO
-//    private void abreNovoRemedio() {
-//        RelativeLayout relativeLayout3 = findViewById(R.id.relativeLayout3);
-//
-//        relativeLayout3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent it = new Intent(DashboardActivity.this, FormularioRemedioActivity.class);
-//                startActivity(it);
-//            }
-//        });
-//    }
 }

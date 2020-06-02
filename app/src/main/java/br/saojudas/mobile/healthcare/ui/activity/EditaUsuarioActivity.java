@@ -1,13 +1,11 @@
 package br.saojudas.mobile.healthcare.ui.activity;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
+import android.graphics.MaskFilter;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -53,14 +51,15 @@ public class EditaUsuarioActivity extends AppCompatActivity {
         campoSenha = findViewById(R.id.campoSenha);
         campoDataNascimento = findViewById(R.id.campoDataNascimento);
         campoTelefone = findViewById(R.id.campoTelefone);
+        campoTelefone.addTextChangedListener(Mask.insert("(##)# ####-####", campoTelefone));
         campoContatoEmergencia = findViewById(R.id.campoContatoEmergencia);
         campoTelefoneEmergencia = findViewById(R.id.campoTelefoneEmergencia);
+        campoTelefoneEmergencia.addTextChangedListener(Mask.insert("(##)# ####-#####", campoTelefoneEmergencia));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, campoSexo);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         Spinner sp = (Spinner) findViewById(R.id.campoSexo);
         sp.setAdapter(adapter);
-
 
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -111,12 +110,17 @@ public class EditaUsuarioActivity extends AppCompatActivity {
 
 
     public void atualizarUsuario(View view) {
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, campoSexo);
+            adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+            Spinner sp = (Spinner) findViewById(R.id.campoSexo);
+            sp.setAdapter(adapter);
             CadastroUsuario usu = CadastroUsuario.session();
             usu.setNome(campoNome.getText().toString());
             usu.setDataNascimento(campoDataNascimento.getText().toString());
             usu.setTelefone(campoTelefone.getText().toString());
             usu.setContatoEmergencia(campoContatoEmergencia.getText().toString());
-            usu.setTelefone(campoTelefoneEmergencia.getText().toString());
+            usu.setTelefoneEmergencia(campoTelefoneEmergencia.getText().toString());
 
             int usu_id = usu.getId();
 

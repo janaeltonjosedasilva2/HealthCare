@@ -51,10 +51,10 @@ public class EditaUsuarioActivity extends AppCompatActivity {
         campoSenha = findViewById(R.id.campoSenha);
         campoDataNascimento = findViewById(R.id.campoDataNascimento);
         campoTelefone = findViewById(R.id.campoTelefone);
-        campoTelefone.addTextChangedListener(Mask.insert("(##)# ####-####", campoTelefone));
+        campoTelefone.addTextChangedListener(Mask.insert("(##)#####-####", campoTelefone));
         campoContatoEmergencia = findViewById(R.id.campoContatoEmergencia);
         campoTelefoneEmergencia = findViewById(R.id.campoTelefoneEmergencia);
-        campoTelefoneEmergencia.addTextChangedListener(Mask.insert("(##)# ####-#####", campoTelefoneEmergencia));
+        campoTelefoneEmergencia.addTextChangedListener(Mask.insert("(##)#####-#####", campoTelefoneEmergencia));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, campoSexo);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);

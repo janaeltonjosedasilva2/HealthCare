@@ -83,7 +83,8 @@ public class EditaUsuarioActivity extends AppCompatActivity {
         campoContatoEmergencia.setText(CadastroUsuario.session().getContatoEmergencia());
         campoTelefoneEmergencia.setText(CadastroUsuario.session().getTelefoneEmergencia());
         sp.setPrompt(CadastroUsuario.session().getSexo());
-        formatDataNascimento(c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH), c.get(Calendar.YEAR));
+        campoDataNascimento.setText(CadastroUsuario.session().getDataNascimento());
+//        formatDataNascimento(c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH), c.get(Calendar.YEAR));
     }
 
     private void formatDataNascimento(int dia, int mes, int ano){
@@ -110,16 +111,12 @@ public class EditaUsuarioActivity extends AppCompatActivity {
 
 
     public void atualizarUsuario(View view) {
-//        if (senha.equals(campoConfirmaSenha.getText().toString())) {
             CadastroUsuario usu = CadastroUsuario.session();
             usu.setNome(campoNome.getText().toString());
-//            usu.setSenha(campoSenha.getText().toString());
             usu.setDataNascimento(campoDataNascimento.getText().toString());
             usu.setTelefone(campoTelefone.getText().toString());
             usu.setContatoEmergencia(campoContatoEmergencia.getText().toString());
             usu.setTelefone(campoTelefoneEmergencia.getText().toString());
-
-//            String senha = usu.getSenha();
 
             int usu_id = usu.getId();
 
@@ -131,9 +128,5 @@ public class EditaUsuarioActivity extends AppCompatActivity {
             System.out.print(CadastroUsuario.session());
 
             finish();
-//        } else {
-//            Toast.makeText(this,"Senhas estão diferentes, digite novamente!",Toast.LENGTH_SHORT).show();
-//        }
-
     }
 }

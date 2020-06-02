@@ -1,13 +1,17 @@
 package br.saojudas.mobile.healthcare.ui.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Calendar;
 
 import br.saojudas.mobile.healthcare.R;
 import br.saojudas.mobile.healthcare.database.HaelthCareDatabase;
@@ -27,9 +31,6 @@ public class EsqueceuSenhaActivity extends AppCompatActivity {
     private RoomUsuarioDAO dao;
     private CadastroUsuario cadastroUsuario;
 
-//    private final String login = editLogin.getText().toString();
-//    private final String dataNascimento = editDataNasc.getText().toString();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,30 @@ public class EsqueceuSenhaActivity extends AppCompatActivity {
         carregarCampos();
         alterarSenha();
         setBtnVoltarLogin();
+        Calendar c = Calendar.getInstance();
+        formatDataNascimento(c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH), c.get(Calendar.YEAR));
+    }
+
+    private void formatDataNascimento(int dia, int mes, int ano){
+        editDataNasc.setText(String.format("%d/%d/%d", dia, mes, ano));
+    }
+
+    public void showDatePicker(View view){
+        String[] date = editDataNasc.getText().toString().split("/");
+
+        int ano = Integer.parseInt(date[2]);
+        int mes = Integer.parseInt(date[1]);
+        int dia = Integer.parseInt(date[0]);
+
+        formatDataNascimento(dia, mes, ano);
+
+        DatePickerDialog a = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                formatDataNascimento(day, month + 1, year);
+            }
+        }, dia, mes, ano);
+        a.show();
     }
 
     private void carregarCampos(){

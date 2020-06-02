@@ -36,6 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:onClick="showDatePicker"
+            android:clickable="true"
             android:hint="@string/data_de_nascimento"
             android:inputType="date" />
 

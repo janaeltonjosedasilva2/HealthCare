@@ -6,6 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:orientation="vertical">
 
         <EditText
@@ -14,25 +15,25 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="@string/nomeRemedio"
-            android:inputType="textCapWords"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:inputType="textCapWords" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:hint="@string/vezes_ao_dia"
+            android:layout_marginStart="13dp"
             android:layout_marginLeft="13dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:textSize="18dp"
-            android:layout_marginStart="13dp" />
+            android:layout_marginBottom="8dp"
+            android:hint="@string/vezes_ao_dia"
+            android:textSize="18dp" />
 
         <Spinner
             android:id="@+id/activity_formulario_agendamento_spinner_frequencia_remedio"
             android:layout_width="match_parent"
-            android:hint="@string/nomeRemedio"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"/>
+            android:layout_margin="8dp"
+            android:hint="@string/nomeRemedio" />
 
         <EditText
             android:id="@+id/activity_formulario_agendamento_EditText_dose"
@@ -40,8 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="@string/dose"
-            android:inputType="numberDecimal"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/activity_formulario_agendamento_EditText_nomeMedico"
@@ -55,9 +56,9 @@
             android:id="@+id/activity_formulario_agendamento_EditText_horaDose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hor_rio_da_primeira_dose"
             android:layout_margin="8dp"
             android:ems="10"
+            android:hint="@string/hor_rio_da_primeira_dose"
             android:inputType="time" />
 
         <TextView

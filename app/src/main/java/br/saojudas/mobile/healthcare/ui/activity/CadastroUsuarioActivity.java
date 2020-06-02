@@ -1,11 +1,13 @@
 package br.saojudas.mobile.healthcare.ui.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import br.saojudas.mobile.healthcare.R;
@@ -61,6 +64,9 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         Spinner sp = (Spinner) findViewById(R.id.campoSexo);
         sp.setAdapter(adapter);
 
+        Calendar c = Calendar.getInstance();
+        formatDataNascimento(c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH), c.get(Calendar.YEAR));
+
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -73,6 +79,29 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void formatDataNascimento(int dia, int mes, int ano){
+        campoDataNascimento.setText(String.format("%d/%d/%d", dia, mes, ano));
+    }
+
+    public void showDatePicker(View view){
+        String[] date = campoDataNascimento.getText().toString().split("/");
+
+        int ano = Integer.parseInt(date[2]);
+        int mes = Integer.parseInt(date[1]);
+        int dia = Integer.parseInt(date[0]);
+
+        formatDataNascimento(dia, mes, ano);
+
+        DatePickerDialog a = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                formatDataNascimento(day, month + 1, year);
+            }
+        }, dia, mes, ano);
+        a.show();
+    }
+
 
     public void salvarUsuario(View view) {
         CadastroUsuario usuario = new CadastroUsuario();
@@ -90,8 +119,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             btnSalvarUsuario.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent it = new Intent(CadastroUsuarioActivity.this, DashboardActivity.class);
-                    startActivity(it);
+                    finish();
                 }
             });
 

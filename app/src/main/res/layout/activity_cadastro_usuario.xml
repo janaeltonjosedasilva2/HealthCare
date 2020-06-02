@@ -33,13 +33,18 @@
             android:id="@+id/campoDataNascimento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:ems="10"
-            android:inputType="date" />
+            android:hint="data de nascimento"
+            android:inputType="date"
+            android:onClick="showDatePicker" />
+
         <EditText
             android:id="@+id/campoTelefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="telefone pessoal"
             android:inputType="phone" />
         <EditText
             android:id="@+id/campoContatoEmergencia"

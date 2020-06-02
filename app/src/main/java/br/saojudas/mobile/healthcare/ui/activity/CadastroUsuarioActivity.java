@@ -55,7 +55,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         campoLogin = findViewById(R.id.campoLogin);
         campoSenha = findViewById(R.id.campoSenha);
         campoDataNascimento = findViewById(R.id.campoDataNascimento);
-
+        campoTelefone = findViewById(R.id.campoTelefone);
         campoTelefone.addTextChangedListener(Mask.insert("(##)#####-####", campoTelefone));
         campoContatoEmergencia = findViewById(R.id.campoContatoEmergencia);
         campoTelefoneEmergencia = findViewById(R.id.campoTelefoneEmergencia);

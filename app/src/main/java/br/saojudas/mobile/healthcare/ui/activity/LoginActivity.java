@@ -92,14 +92,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     private void abreDashboard() {
-        Button btnEntrar = findViewById(R.id.btnEntrar);
-        btnEntrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(LoginActivity.this, DashboardActivity.class);
-                startActivity(it);
-            }
-        });
+        Intent it = new Intent(LoginActivity.this, DashboardActivity.class);
+        startActivity(it);
     }
     private void abreEsqueciSenha() {
         Button btnEsqueceuSenha = findViewById(R.id.btnEsqueceuSenha);

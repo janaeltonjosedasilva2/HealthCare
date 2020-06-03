@@ -29,6 +29,7 @@ import br.saojudas.mobile.healthcare.R;
 import br.saojudas.mobile.healthcare.database.HaelthCareDatabase;
 import br.saojudas.mobile.healthcare.database.dao.RoomAgendamentoDAO;
 import br.saojudas.mobile.healthcare.model.Agendamento;
+import br.saojudas.mobile.healthcare.model.CadastroUsuario;
 import br.saojudas.mobile.healthcare.ui.adapter.FormularioAgendamentoAdapter;
 import br.saojudas.mobile.healthcare.ui.helper.TimePickerHelper;
 import br.saojudas.mobile.healthcare.ui.receiver.AlertReceiver;
@@ -131,6 +132,7 @@ public class FormularioAgendamentoActivity extends AppCompatActivity {
         if (agendamento.temIdValido()) {
             dao.edita(agendamento);
         } else {
+            agendamento.setIdUsuario(CadastroUsuario.session().getId());
             dao.salvar(agendamento);
         }
         finish();

@@ -18,6 +18,9 @@ public interface RoomAgendamentoDAO {
     @Query("SELECT * FROM Agendamento")
     List<Agendamento> todos();
 
+    @Query("SELECT * FROM Agendamento WHERE idUsuario=:idUsuario")
+    List<Agendamento> getAgendamentosParaUsuarios(int idUsuario);
+
     @Delete
     void remove(Agendamento agendamento);
 

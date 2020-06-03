@@ -9,9 +9,12 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
+import java.util.List;
+
 import br.saojudas.mobile.healthcare.database.HaelthCareDatabase;
 import br.saojudas.mobile.healthcare.database.dao.RoomAgendamentoDAO;
 import br.saojudas.mobile.healthcare.model.Agendamento;
+import br.saojudas.mobile.healthcare.model.CadastroUsuario;
 import br.saojudas.mobile.healthcare.ui.activity.FormularioAgendamentoActivity;
 import br.saojudas.mobile.healthcare.ui.adapter.ListaAgendamentoAdapter;
 
@@ -19,12 +22,14 @@ public class ListaAgendamentoView {
     private final ListaAgendamentoAdapter adapter;
     private final RoomAgendamentoDAO dao;
     private final Context context;
+    private final CadastroUsuario cadastroUsuario;
 
     public ListaAgendamentoView(Context context) {
         this.context = context;
         this.adapter = new ListaAgendamentoAdapter(this.context);
         this.dao = HaelthCareDatabase.getInstance(context)
                 .getRoomAgendamentoDAO();
+        this.cadastroUsuario = new CadastroUsuario();
     }
 
     public void confirmaRemocao(@NonNull final MenuItem item) {
@@ -44,7 +49,7 @@ public class ListaAgendamentoView {
     }
 
     public void atualizaListaDeAgendamentos() {
-        adapter.atualiza(dao.todos());
+        adapter.atualiza(dao.getAgendamentosParaUsuarios(CadastroUsuario.session().getId()));
     }
 
     private void removeAgendamento(Agendamento agendamento) {

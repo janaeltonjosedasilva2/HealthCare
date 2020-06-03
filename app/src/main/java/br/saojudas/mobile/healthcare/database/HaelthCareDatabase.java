@@ -13,14 +13,14 @@ import br.saojudas.mobile.healthcare.database.dao.RoomUsuarioDAO;
 import br.saojudas.mobile.healthcare.model.Agendamento;
 import br.saojudas.mobile.healthcare.model.CadastroUsuario;
 
-@Database(entities = { Agendamento.class, CadastroUsuario.class }, version = 4, exportSchema = false)
+@Database(entities = { Agendamento.class, CadastroUsuario.class}, version = 6, exportSchema = false)
 @TypeConverters({ConverterTime.class})
 public abstract class HaelthCareDatabase extends RoomDatabase {
 
     private static final String NOME_BANCO_DE_DADOS = "agendamento.db";
 
-    public abstract RoomAgendamentoDAO getRoomAgendamentoDAO();
     public abstract RoomUsuarioDAO getRoomUsuarioDAO();
+    public abstract RoomAgendamentoDAO getRoomAgendamentoDAO();
 
     public static HaelthCareDatabase getInstance(Context context){
         return Room

@@ -1,20 +1,22 @@
 package br.saojudas.mobile.healthcare.model;
 
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import static androidx.room.ForeignKey.CASCADE;
 
-@Entity
+@Entity(foreignKeys = @ForeignKey(entity = CadastroUsuario.class,
+        parentColumns = "id",
+        childColumns = "idUsuario",
+        onDelete = CASCADE),
+        indices = {@Index(value = "idUsuario")})
 public class Agendamento implements Serializable {
+
     @PrimaryKey(autoGenerate = true)
     private int id = 0;
     private String nomeMedicamento;
@@ -22,6 +24,15 @@ public class Agendamento implements Serializable {
     private String nomeMedico;
     private int frequenciaMedicamento;
     public String horaPrimeiraDose;
+    public int idUsuario;
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
 
     public Agendamento() {
     }
